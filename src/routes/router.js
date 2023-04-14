@@ -129,7 +129,7 @@ router.post('/signup', async (req, res) => {
     const userexist = await User.findOne({ email: email });
     try {
         if (userexist) {
-            alert('User already exist');
+            res.status(409).json('User already exist');
         } else {
             if (password == cpassword) {
                 const signData = new User({
@@ -145,12 +145,12 @@ router.post('/signup', async (req, res) => {
                     httpOnly: true
                 })
                 await signData.save();
-                res.json('exist')
+                res.status(201).json({ message: 'exist' })
             //  const tokens =   jwt.sign({email : signData.email, id: signData._id},process.env.SECRET_KEY)
             //     res.status(201).json({user:signData, token:tokens})
             }
             else {
-                res.json('no exist');
+                res.status(400).json({ message: 'notexist' })
             }
         }
     } catch (error) {
