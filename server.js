@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const dot = require('dotenv');
 dot.config({path: './backend/.env'}).parsed;
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 1234;
 const cors = require('cors');
 const router = require('./src/routes/router');
 const db = require('./src/db/db');
